@@ -68,8 +68,10 @@ public class MemberView {
 				findByKeyword();
 				break;
 			case 5 :
+				update();
 				break;
 			case 6 :
+				delete();
 				break;
 			case 9 :
 				System.out.println("프로그램을 종료합니다.");
@@ -198,6 +200,43 @@ public class MemberView {
 				System.out.println(members.get(i));
 			}
 		}
+	}
+	
+	private void update() {
 		
+		System.out.println("\n회원 정보 수정 서비스 입니다.");
+		
+		// 아이디랑 비밀번호랑 새 비밀번호 받아서
+		// 아이디랑 비밀번호가 있는거 있으면 새 비밀번호로 바꾸기
+		System.out.print("아이디를 입력해주세요 > ");
+		String userId = sc.nextLine();
+		System.out.print("비밀번호를 입력해주세요 > ");
+		String userPwd = sc.nextLine();
+		System.out.print("새 비밀번호를 입력해주세요 > ");
+		String newPassword = sc.nextLine();
+		
+		int result = mc.update(userId, userPwd, newPassword);
+		
+		if(result > 0) {
+			System.out.println("비밀번호 변경에 성공했습니다.");
+		} else {
+			System.out.println("비밀번호가 다릅니다.");
+		}
+	}
+	
+	private void delete() {
+		System.out.println("안녕히가세요 ~ ");
+		System.out.print("아이디를 입력해주세요 > ");
+		String userId = sc.nextLine();
+		System.out.print("비밀번호를 입력해주세요 > ");
+		String userPwd = sc.nextLine();
+		
+		int result = mc.delete(userId, userPwd);
+		
+		if(result > 0) {
+			System.out.println("삭제에 성공했습니다.");
+		} else {
+			System.out.println("삭제에 실패했습니다.");
+		}
 	}
 }
