@@ -568,9 +568,6 @@ public class MemberDao {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
 		return result;
 	}
 	
