@@ -21,6 +21,17 @@ public class Products {
 	
 	
 	
+	public Products(int product_No, String product_Name, String sku, String category, int price, int quantity) {
+		super();
+		this.product_No = product_No;
+		this.product_Name = product_Name;
+		this.sku = sku;
+		this.category = category;
+		this.price = price;
+		this.quantity = quantity;
+	}
+
+
 	public Products(int product_No, String product_Name, String sku, String category, int price, int quantity,
 			Date product_Date) {
 		super();
@@ -32,7 +43,6 @@ public class Products {
 		this.quantity = quantity;
 		this.product_Date = product_Date;
 	}
-
 
 
 

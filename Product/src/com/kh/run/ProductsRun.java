@@ -1,13 +1,13 @@
 package com.kh.run;
 
-import com.kh.model.vo.Products;
+import com.kh.view.ProductsView;
 
 public class ProductsRun {
 
 	public static void main(String[] args) {
 		
-		Products products = new Products();
-		products.mainMenu();
+		ProductsView product = new ProductsView();
+		product.mainMenu();
 		
 	}
 
