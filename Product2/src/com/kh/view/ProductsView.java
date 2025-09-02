@@ -144,9 +144,9 @@ public class ProductsView {
 			int result = pc.update(category, productName, newName);
 			
 			if(result > 0) {
-				System.out.println("비밀번호 변경에 성공했습니다.");
+				System.out.println("상품명을 변경에 성공했습니다.");
 			} else {
-				System.out.println("비밀번호가 다릅니다.");
+				System.out.println("카테고리에 존재하는 상품이 없습니다.");
 			}
 		}
 		
