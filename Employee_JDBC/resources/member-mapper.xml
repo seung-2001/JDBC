@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>MEMBER SQL</comment>
+	
+	<entry key = "findAll">
+			SELECT
+				   EMP_ID
+				 , EMP_NAME
+				 , SALARY
+				 , DEPT_TITLE
+				 , JOB_NAME
+			  FROM
+			       EMPLOYEE
+			  JOIN
+			  	   DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+			  JOIN
+			       JOB USING(JOB_CODE)
+			 
+	</entry>
+	
+	<entry key = "searchdeptCode">
+			SELECT
+				   EMP_ID
+				 , EMP_NAME
+				 , SALARY
+				 , DEPT_TITLE
+				 , JOB_NAME
+	 	      FROM
+	 	       	   EMPLOYEE
+	 	      JOIN
+			  	   DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+			  JOIN
+			       JOB USING(JOB_CODE) 
+			 WHERE
+	 	       	   DEPT_TITLE = ?
+	</entry>
+	
+	<entry key = "searchjobName">
+			SELECT
+				   EMP_ID
+				 , EMP_NAME
+				 , SALARY
+				 , DEPT_TITLE
+				 , JOB_NAME
+	 	      FROM
+	 	       	   EMPLOYEE
+	 	      JOIN
+			  	   DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+			  JOIN
+			       JOB USING(JOB_CODE) 
+			 WHERE
+			       JOB_NAME = ?
+				   
+	</entry>
+	
+	
+	<entry key = "searchempId">
+			SELECT 
+				   EMP_ID
+				 , EMP_NAME
+				 , SALARY
+				 , DEPT_TITLE
+				 , JOB_NAME
+			  FROM
+			       EMPLOYEE
+			  JOIN
+			  	   DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+			  JOIN
+			       JOB USING(JOB_CODE)
+			 WHERE
+			       EMP_ID = ?
+	</entry>
+	
+	<entry key = "searchTop">
+			SELECT
+				   EMP_ID
+				 , EMP_NAME
+				 , SALARY
+				 , DEPT_TITLE
+				 , JOB_NAME
+			  FROM 
+			  	   EMPLOYEE
+			  JOIN
+			  	   DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+			  JOIN
+			       JOB USING(JOB_CODE)
+			 ORDER 
+			  	BY 
+			  	   SALARY DESC
+			OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY
+	</entry>
+	<entry key = "searchRow">
+				SELECT
+				   EMP_ID
+				 , EMP_NAME
+				 , SALARY
+				 , DEPT_TITLE
+				 , JOB_NAME
+			  FROM 
+			  	   EMPLOYEE
+			  JOIN
+			  	   DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+			  JOIN
+			       JOB USING(JOB_CODE)
+			 ORDER 
+			  	BY 
+			  	   SALARY ASC
+			OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY
+	</entry>
+	<entry key = "save">
+		INSERT
+		  INTO
+		       EMPLOYEE
+		VALUES
+		       (
+		       ?
+		     , ?
+		     , ?
+		     , NULL
+		     , 0
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , 0
+		     , NULL
+		     , SYSDATE
+		     , SYSDATE
+		     , 'N'
+		       )
+	
+	</entry>
+	
+	<entry key = "update">
+		UPDATE
+			   EMPLOYEE
+		   SET
+		       SALARY	 = ?
+		     , DEPT_CODE = ?
+		     , JOB_CODE  = ?
+		 WHERE
+		       EMP_ID = ?
+	</entry>
+	
+	<entry key = "delete">
+		UPDATE
+			   EMPLOYEE
+		   SET
+		       ENT_DATE = SYSDATE
+		     , ENT_YN = 'Y'
+		 WHERE
+		       EMP_ID = ?
+	</entry>
+	
+
+</properties>
