@@ -11,13 +11,6 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class JDBCTemplate {
-	/*
-	 * JDBC과정 중 반복적으로 쓰이는 구문들을 각각의 메소드로 정의해둘 클래스
-	 * 중복된 코드들을 메소드로 분리하여 '재사용'
-	 * 이 클래스의 모든 메소드는 전부 static으로 선언
-	 */
-	// JDBC Driver를 등록하는 메소드
-	// 프로그램 실행 중 단 한 번만 실행되면 됨
 	public static void registerDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -26,15 +19,10 @@ public class JDBCTemplate {
 		}
 	}
 	
-	// DB의 연결정보를 가지고 있는 Connection객체를 생성해서 반환해주는 메소드
 	public static Connection getConnection() {
 		Properties prop = new Properties();
 		try {
 			prop.load(new FileInputStream("resources/driver.properties"));
-			
-			//String keyA = prop.getProperty("A");
-			//System.out.println("A 키값의 Value : " + keyA);
-			//System.out.println(prop.getProperty("URL"));
 			
 			Connection conn = DriverManager.getConnection(prop.getProperty("URL")
 													    , prop.getProperty("USERNAME")
@@ -52,9 +40,7 @@ public class JDBCTemplate {
 		return null;
 	}
 	
-	// 트랜잭션 처리 메소드
 	
-	// Connection객체를 이용해서 commit 시켜주는 메소드
 	public static void commit(Connection conn) {
 		try {
 			if(conn != null) {
@@ -65,7 +51,6 @@ public class JDBCTemplate {
 		}
 	}
 	
-	// Connection 객체를 이용해서 rollback시켜주는 메소드
 	public static void rollback(Connection conn) {
 		try {
 			if(conn != null) {
@@ -76,8 +61,6 @@ public class JDBCTemplate {
 		}
 	}
 	
-	// JDBC용 객체를 반납해주는 메소드 (각 객체별로)
-	// Connection 객체를 전달받아서 반납해주는 메소드
 	public static void close(Connection conn) {
 		try {
 			if(conn != null) {
@@ -88,8 +71,6 @@ public class JDBCTemplate {
 		}
 	}
 	
-	// Statement 객체를 전달 받아서 반납해주는 메소드
-	// => 다형성을 적용하여 PreparedStatement객체도 Statement타입으로 받을 수 있음
 	public static void close(Statement stmt) {
 		try {
 			if(stmt != null) {
@@ -100,7 +81,6 @@ public class JDBCTemplate {
 		}
 	}
 	
-	// ResultSet 객체를 전달받아서 반납해주는 메소드
 	public static void close(ResultSet rset) {
 		try {
 			if(rset != null) {
@@ -110,9 +90,4 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
 }
